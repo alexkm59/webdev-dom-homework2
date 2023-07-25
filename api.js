@@ -81,7 +81,7 @@ export const postComment = ({ fetchAndRenderComments }) => {
 
             fetchAndRenderComments();
             // Очистка формы
-            nameElement.value = "";
+            // nameElement.value = "";
             textElement.value = "";
         })
         .catch((error) => {
