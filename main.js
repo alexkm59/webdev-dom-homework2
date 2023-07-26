@@ -1,7 +1,8 @@
 import { dataFormat } from "./formatDate.js";
-import { getComments, postComment,token } from "./api.js";
+import { getComments, postComment, token } from "./api.js";
 import { renderComments } from "./renderComments.js";
-import {loginAutoriz} from "./autoriz.js";
+import { loginAutoriz } from "./autoriz.js";
+import { format } from "date-fns";
 
 
 const buttonElement = document.querySelector('.add-form-button');
@@ -21,7 +22,7 @@ const fetchAndRenderComments = () => {
                     // Достаем имя автора
                     name: comment.author.name,
                     // Преобразовываем дату-строку в Date
-                    time: dataFormat(comment.date),
+                    time: format(new Date(comment.date), 'dd.MM.yy hh:mm'),
                     text: comment.text,
                     likes: comment.likes,
                     // Заглушка для признака лайкнутости
@@ -113,7 +114,7 @@ textElement.addEventListener("input", disableButton);
 
 // };
 
-loginAutoriz({nameElement});
+loginAutoriz({ nameElement });
 
 // Форма добавления нового комментария в ленту
 buttonElement.addEventListener('click', () => {
